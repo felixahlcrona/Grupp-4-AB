@@ -7,6 +7,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>Skidloppet AB</title>
+
 </head>
 <body>
 
@@ -123,7 +124,7 @@
     
 	
 // Only make insert if there is a form post to process
-      if(isset($_POST['Fornamn,Efternamn'])){
+      
         $querystring='INSERT INTO Kund (Fornamn,Efternamn,Fodelsedatum,Email,Klubbnamn,Gatunamn,Postort,Postnummer,Losenord) VALUES(:Fornamn,:Efternamn,:Fodelsedatum,:Email,:Klubbnamn,:Gatunamn,:Postort,:Postnummer,:Losenord);';
         $stmt = $pdo->prepare($querystring);
         $stmt->bindValue(':Fornamn', $_POST['Fornamn']);
@@ -137,7 +138,7 @@
 		$stmt->bindValue(':Losenord', $_POST['Losenord']);
         $stmt->execute();
 		  
-	  }
+	  
 	
 	
 	
