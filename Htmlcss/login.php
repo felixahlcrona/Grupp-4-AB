@@ -81,9 +81,55 @@ input[type="password"] {
     <form action="" method="post" name="Login_Form" class="form-signin">       
         <h3 class="form-signin-heading">Välkommen tillbaka! Logga in</h3>
         
-        <input type="text" class="form-control" name="Username" placeholder="Username" required="" autofocus="" />
-        <input type="password" class="form-control" name="Password" placeholder="Password" required=""/>          
+        <input type="text" class="form-control" name="Email" placeholder="username" required="" autofocus="" />
+        <input type="password" class="form-control" name="Losenord" placeholder="password" required=""/>          
        
+	   
+	   
+	   <?php
+    
+
+    $pdo = new PDO('mysql:dbname=Grupp4AB;host=wwwlab.iit.his.se', 'sqllab', 'Tomten2009');
+	$pdo->exec("set names utf8");
+    $pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+    
+	
+	
+	if(isset($_POST['submit'])){
+		$errMsg = '';
+		//username and password sent from Form
+		$username = trim($_POST['Email']);
+		$password = trim($_POST['Losenord']);
+		
+		if($username == '')
+			$errMsg .= 'You must enter your Username<br>';
+		
+		if($password == '')
+			$errMsg .= 'You must enter your Password<br>';
+		
+		
+		if($errMsg == ''){
+			$records = $databaseConnection->prepare('SELECT KundID,Email,Losenord FROM  Kund WHERE Email = :Email');
+			$records->bindParam(':Email', $username);
+			$records->execute();
+			$results = $records->fetch(PDO::FETCH_ASSOC);
+			if(count($results) > 0 && password_verify($password, $results['Losenord'])){
+				$_SESSION['Email'] = $results['Email'];
+				header('location:dashboard.php');
+				exit;
+			}else{
+				$errMsg .= 'Username and Password are not found<br>';
+			}
+		}
+		}
+
+    
+?>
+	   
+	   
+	   
+	   
+	   
         <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Logga in</button> 
         <a href="#" class="forgot-password" style="margin-top:20px; text-align: center;">
                 Forgot the password?
