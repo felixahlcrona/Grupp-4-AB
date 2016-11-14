@@ -1,16 +1,39 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<title>Skidloppet AB</title>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Logga in</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
-  <style type="text/css">
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
-  .wrapper {    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+      .marketing {
+        text-align: center;
+        margin-bottom:20px;
+      }
+
+      .divider {
+        margin:80px 0;
+      }
+
+      hr {
+        border:1px solid #eee;
+      }
+
+        .wrapper {    
   margin-top: 80px;
   margin-bottom: 20px;
 }
@@ -48,31 +71,16 @@ input[type="password"] {
 }
 
 
-  </style>
 
+    </style>
+
+  </head>
 
 </head>
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="index.html">Skidloppet AB</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="index.html">Hem</a></li>
-      <li><a href="#">Boka Evenemang</a></li>
-      <li><a href="webshop.html">Webshop</a></li> 
-      <li><a href="Kontakt.html">Kontakt</a></li> 
-      <li><a href="#">Galleri</a></li> 
-    </ul>
+<?php require_once('includes/header.php'); ?>
 
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="registrera.php"><span class="glyphicon glyphicon-user"></span>Registrera dig</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logga in</a></li>
-    </ul>
-  </div>
-	</nav>
 
   <div class="clearfix" style="margin-bottom:150px;"></div>
 
@@ -81,58 +89,52 @@ input[type="password"] {
     <form action="" method="post" name="Login_Form" class="form-signin">       
         <h3 class="form-signin-heading">Välkommen tillbaka! Logga in</h3>
         
-        <input type="text" class="form-control" name="Email" placeholder="username" required="" autofocus="" />
-        <input type="password" class="form-control" name="Losenord" placeholder="password" required=""/>          
+        <input type="text" class="form-control" name="Email" placeholder="Användarnamn(E-mail)" required="" autofocus="" />
+        <input type="password" class="form-control" name="Losenord" placeholder="Lösenord" required=""/>
+
+        <?php
+
+
+    if(isset($_POST['login'])) {
+        include_once("db.php");
+
+        $Email = strip_tags($_POST['Email']);
+        $Losenord = strip_tags($_POST['Losenord']);
+
+        $Email = stripslashes($Email);
+        $Losenord = stripslashes($Losenord);
+        
+        $Email = mysqli_real_escape_string($db, $Email);
+        $Losenord = mysqli_real_escape_string($db, $Losenord);
+
+        $Losenord = md5($Losenord);
+
+        $sql = "SELECT * FROM Kund WHERE Email='$Email' LIMIT 1";
+        $query = mysqli_query($db, $sql);
+        $row = mysqli_fetch_array($query);
+        $KundID = $row['KundID'];
+        $db_Losenord = $row['Losenord'];
+
+        if($Losenord == $db_Losenord) {
+            $_SESSION['Email'] = $Email;
+            $_SESSION['KundID'] = $KundID;
+          
+
+           header("Location: mina_sidor.php");
+
+
+        } else {
+            
+      $message = "Fel uppgifter, testa igen";
+echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+
+    }
+?>       
        
-	   
-	   
-	   <?php
-    
-
-    $pdo = new PDO('mysql:dbname=Grupp4AB;host=wwwlab.iit.his.se', 'sqllab', 'Tomten2009');
-	$pdo->exec("set names utf8");
-    $pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-    
-	
-	
-	if(isset($_POST['submit'])){
-		$errMsg = '';
-		//username and password sent from Form
-		$username = trim($_POST['Email']);
-		$password = trim($_POST['Losenord']);
-		
-		if($username == '')
-			$errMsg .= 'You must enter your Username<br>';
-		
-		if($password == '')
-			$errMsg .= 'You must enter your Password<br>';
-		
-		
-		if($errMsg == ''){
-			$records = $databaseConnection->prepare('SELECT KundID,Email,Losenord FROM  Kund WHERE Email = :Email');
-			$records->bindParam(':Email', $username);
-			$records->execute();
-			$results = $records->fetch(PDO::FETCH_ASSOC);
-			if(count($results) > 0 && password_verify($password, $results['Losenord'])){
-				$_SESSION['Email'] = $results['Email'];
-				header('location:dashboard.php');
-				exit;
-			}else{
-				$errMsg .= 'Username and Password are not found<br>';
-			}
-		}
-		}
-
-    
-?>
-	   
-	   
-	   
-	   
-	   
-        <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Logga in</button> 
+        <button class="btn btn-lg btn-primary btn-block"  name="login" value="Login" type="Submit">Logga in</button> 
         <a href="#" class="forgot-password" style="margin-top:20px; text-align: center;">
-                Forgot the password?
+                Glömt lösenord?
             </a>       
     </form>     
   </div>

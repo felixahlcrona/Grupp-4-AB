@@ -1,0 +1,64 @@
+/* All extern CSS is placed here */
+* {
+	font-family: 'Raleway', sans-serif;
+}
+nav.navbar.navbar-inverse.navbar-fixed-top {
+	background-color: #EDF3F5;
+}
+
+ul.nav.navbar-nav > li > a {
+	color:black;
+}
+
+ul.nav.navbar-nav.navbar-right > li > a {
+	color:black;
+}
+
+p {
+	line-height: 2.5rem;
+}
+
+div.span8 {
+	float: left;
+}
+
+div.navbar-header {
+	margin-left:25px;
+}
+
+div.col-sm-9 {
+	width:40%;
+}
+
+.reg-text {
+	text-align: center;
+	font-size:25px;
+}
+
+.collapsboka
+	{
+	
+		margin-top: 6%;
+		margin-right: 5%;
+		padding-left: 10%;
+		padding-right: 10%;
+	}
+	.panel-group .panel{
+		width: 70%;
+	}
+	.buttonplacement{
+		position:relative;
+	float:right;
+	
+	margin-right:5%;
+	
+
+	}
+	.collapstext{
+			position:relative;
+	float:left;
+	width:40%;
+
+	margin-right:5%;
+	
+	}

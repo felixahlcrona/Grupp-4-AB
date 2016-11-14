@@ -1,42 +1,54 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<title>Skidloppet AB</title>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Registrera</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <script type="text/javascript" src="js/main.js"></script>
 
-</head>
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+      .marketing {
+        text-align: center;
+        margin-bottom:20px;
+      }
+
+      .divider {
+        margin:80px 0;
+      }
+
+      hr {
+        border:1px solid #eee;
+      }
+
+
+
+    </style>
+
+  </head>
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="index.html">Skidloppet AB</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="index.html">Hem</a></li>
-      <li><a href="#">Boka Evenemang</a></li>
-      <li><a href="webshop.html">Webshop</a></li>
-      <li><a href="Kontakt.html">Kontakt</a></li>
-      <li><a href="#">Galleri</a></li> 
-    </ul>
-
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="registrera.php"><span class="glyphicon glyphicon-user"></span>Registrera dig</a></li>
-      <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Logga in</a></li>
-    </ul>
-  </div>
-	</nav>
+  <?php require_once('includes/header.php'); ?>
 
   <div class="clearfix" style="margin-bottom:100px;"></div>
   <div class="container">
-            <form class="form-horizontal" role="form" action="registrera.php" method="post" id="contact-form">
-                <h2 style="text-align:center;">Registrera dig hos oss redan idag</h2>
-				
-				
+            <form class="form-horizontal" role="form" action="registrera.php" method="post" id="contact-form" name="myForm" onsubmit="return validateForm()">
+                <h2 class="reg-text">Registrera dig hos oss redan idag</h2>
+        
+        
                 <div class="form-group">
                     <label for="Fornamn" class="col-sm-3 control-label">Förnamn</label>
                     <div class="col-sm-9">
@@ -50,11 +62,11 @@
                         <input type="text" id="Efternamn" name="Efternamn" placeholder="Efternamn" class="form-control">
                     </div>
                 </div>
-				
-				 <div class="form-group">
+        
+         <div class="form-group">
                     <label for="Fodelsedatum" class="col-sm-3 control-label">Födelsedatum</label>
                     <div class="col-sm-9">
-                        <input type="text" id="Fodelsedatum" name="Fodelsedatum" placeholder="Födelsedatum" class="form-control">
+                        <input type="text" id="Fodelsedatum" name="Fodelsedatum" placeholder="ex. 19951014-5593" class="form-control">
                     </div>
                 </div>
 
@@ -96,7 +108,14 @@
                  <div class="form-group">
                     <label for="Losenord" class="col-sm-3 control-label">Lösenord</label>
                     <div class="col-sm-9">
-                        <input type="Losenord" id="Losenord" name="Losenord" placeholder="Lösenord" class="form-control">
+                        <input type="password" id="Losenord" name="Losenord" placeholder="Lösenord" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="beklosenord" class="col-sm-3 control-label">Bekräfta lösenord</label>
+                    <div class="col-sm-9">
+                        <input type="password" id="beklosenord" name="beklosenord" class="form-control">
                     </div>
                 </div>
 
@@ -116,76 +135,30 @@
 
                  
 <?php
-    
+include("db.php");
+  if(isset($_POST['Fornamn'])) {
+if($_SERVER["REQUEST_METHOD"] == "POST")
+{
+// username and password sent from Form
+$Fornamn=mysqli_real_escape_string($db,$_POST['Fornamn']);
+$Efternamn=mysqli_real_escape_string($db,$_POST['Efternamn']); 
+$Fodelsedatum=mysqli_real_escape_string($db,$_POST['Fodelsedatum']);
+$Email=mysqli_real_escape_string($db,$_POST['Email']);
+$Klubbnamn=mysqli_real_escape_string($db,$_POST['Klubbnamn']);
+$Gatunamn=mysqli_real_escape_string($db,$_POST['Gatunamn']);
+$Postort=mysqli_real_escape_string($db,$_POST['Postort']);
+$Postnummer=mysqli_real_escape_string($db,$_POST['Postnummer']);
+$Losenord=mysqli_real_escape_string($db,$_POST['Losenord']);
+$confirmPassword = mysqli_real_escape_string($db, $_POST['beklosenord']);
+$Losenord=md5($Losenord); // Encrypted Password
 
-    $pdo = new PDO('mysql:dbname=Grupp4AB;host=wwwlab.iit.his.se', 'sqllab', 'Tomten2009');
-	$pdo->exec("set names utf8");
-    $pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-    
-	
-// Only make insert if there is a form post to process
-      
-        $querystring='INSERT INTO Kund (Fornamn,Efternamn,Fodelsedatum,Email,Klubbnamn,Gatunamn,Postort,Postnummer,Losenord) VALUES(:Fornamn,:Efternamn,:Fodelsedatum,:Email,:Klubbnamn,:Gatunamn,:Postort,:Postnummer,:Losenord);';
-        $stmt = $pdo->prepare($querystring);
-        $stmt->bindValue(':Fornamn', $_POST['Fornamn']);
-        $stmt->bindValue(':Efternamn', $_POST['Efternamn']);
-		$stmt->bindValue(':Fodelsedatum', $_POST['Fodelsedatum']);
-		$stmt->bindValue(':Email', $_POST['Email']);
-		$stmt->bindValue(':Klubbnamn', $_POST['Klubbnamn']);
-		$stmt->bindValue(':Gatunamn', $_POST['Gatunamn']);
-		$stmt->bindValue(':Postort', $_POST['Postort']);
-		$stmt->bindValue(':Postnummer', $_POST['Postnummer']);
-		$stmt->bindValue(':Losenord', $_POST['Losenord']);
-        $stmt->execute();
-		  
-	  
-	
-	
-	
-	
-		 echo "<table border='1'>";
-	
-	
-
-echo "<tr style='background-color:grey; font-size: 20px;'>";
-    echo "<th>Förnamn</th>";
-	echo "<th>Efternamn</th>";
-	echo "<th>Födelsedatum</th>";
-    echo "<th>Email</th>";
-    echo "<th>Klubbnamn</th>";
-	  echo "<th>Gatunamn</th>";
-	    echo "<th>Postort</th>";
-		  echo "<th>Postnummer</th>";
-		    echo "<th>Lösenord</th>";
-echo "</tr>";
-
-
-
-	 foreach($pdo->query( 'SELECT * FROM Kund' ) as $row){
-      echo "<tr style='background-color:#4286f4; font-size: 20px;'>";
-      echo "<td> ".$row['Fornamn']."</td>";
-      echo "<td> ".$row['Efternamn']."</td>";
-   echo "<td> ".$row['Fodelsedatum']."</td>";  	  
-      echo "<td> ".$row['Email']."</td>";
-	     echo "<td> ".$row['Klubbnamn']."</td>"; 
-		 echo "<td> ".$row['Gatunamn']."</td>"; 
-		 echo "<td> ".$row['Postort']."</td>"; 
-		 echo "<td> ".$row['Postnummer']."</td>"; 
-		 echo "<td> ".$row['Losenord']."</td>"; 
-      echo "</tr>";     
-	  
-	  
-	   
-	  
-
-    }
-		echo "</table>";
-	
-
-    
+$sql="INSERT INTO Kund (Fornamn,Efternamn,Fodelsedatum,Email,Klubbnamn,Gatunamn,Postort,Postnummer,Losenord) VALUES('$Fornamn','$Efternamn','$Fodelsedatum','$Email','$Klubbnamn','$Gatunamn','$Postort','$Postnummer','$Losenord');";
+$result=mysqli_query($db,$sql);
+echo "Registration Successfully";
+  }}
 ?>
-            
-            </form> <!-- /form -->
-        </div> <!-- ./container -->
+        
+</form> <!-- /form -->
+    </div> <!-- ./container -->
 </body>
 </html>
