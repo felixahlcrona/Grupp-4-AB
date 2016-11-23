@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  <body background="bilder/skog.jpg">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,7 +44,7 @@
   padding: 30px 38px 66px;
   margin: 0 auto;
   background-color: #eee;
-  border: 3px dotted rgba(0,0,0,0.1);  
+  border: 3px ridge rgba(0,0,0,0.1);  
   }
 
 .form-signin-heading {
@@ -79,7 +80,11 @@ input[type="password"] {
 </head>
 <body>
 
-<?php require_once('includes/header.php'); ?>
+<?php require_once('includes/header.php'); 
+ session_start();
+
+
+?>
 
 
   <div class="clearfix" style="margin-bottom:150px;"></div>
@@ -95,32 +100,45 @@ input[type="password"] {
         <?php
 
 
+
+
     if(isset($_POST['login'])) {
         include_once("db.php");
 
         $Email = strip_tags($_POST['Email']);
         $Losenord = strip_tags($_POST['Losenord']);
+		
 
         $Email = stripslashes($Email);
         $Losenord = stripslashes($Losenord);
         
         $Email = mysqli_real_escape_string($db, $Email);
         $Losenord = mysqli_real_escape_string($db, $Losenord);
-
         $Losenord = md5($Losenord);
 
+		
+		
         $sql = "SELECT * FROM Kund WHERE Email='$Email' LIMIT 1";
         $query = mysqli_query($db, $sql);
         $row = mysqli_fetch_array($query);
         $KundID = $row['KundID'];
+		$Email = $row['Email'];
         $db_Losenord = $row['Losenord'];
+		$Gatunamn = $row['Gatunamn'];
+		$Postort = $row['Postort'];
+		$Postnummer = $row['Postnummer'];
+		$Klubbnamn = $row['Klubbnamn'];
 
         if($Losenord == $db_Losenord) {
-            $_SESSION['Email'] = $Email;
-            $_SESSION['KundID'] = $KundID;
-          
+          $_SESSION['Email'] = $Email;
+          $_SESSION['KundID'] = $KundID;
+		  $_SESSION['Gatunamn'] = $Gatunamn;
+          $_SESSION['Postort'] = $Postort;
+		   $_SESSION['Postnummer'] = $Postnummer;
+		    $_SESSION['Klubbnamn'] = $Klubbnamn;
 
-           header("Location: mina_sidor.php");
+          
+		header("Location: mina_sidor.php");
 
 
         } else {
@@ -130,7 +148,10 @@ echo "<script type='text/javascript'>alert('$message');</script>";
         }
 
     }
+
+
 ?>       
+
        
         <button class="btn btn-lg btn-primary btn-block"  name="login" value="Login" type="Submit">Logga in</button> 
         <a href="#" class="forgot-password" style="margin-top:20px; text-align: center;">

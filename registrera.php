@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,6 +35,7 @@
         border:1px solid #eee;
       }
 
+	 
 
 
     </style>
@@ -41,7 +43,14 @@
   </head>
 <body>
 
-  <?php require_once('includes/header.php'); ?>
+  <?php require_once('includes/header.php');
+
+session_start();
+
+
+ ?>
+  
+  
 
   <div class="clearfix" style="margin-bottom:100px;"></div>
   <div class="container">
@@ -134,8 +143,14 @@
                 </div>
 
                  
+				 <?php
+// Start the session
+
+
+?>
 <?php
 include("db.php");
+
   if(isset($_POST['Fornamn'])) {
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -154,9 +169,77 @@ $Losenord=md5($Losenord); // Encrypted Password
 
 $sql="INSERT INTO Kund (Fornamn,Efternamn,Fodelsedatum,Email,Klubbnamn,Gatunamn,Postort,Postnummer,Losenord) VALUES('$Fornamn','$Efternamn','$Fodelsedatum','$Email','$Klubbnamn','$Gatunamn','$Postort','$Postnummer','$Losenord');";
 $result=mysqli_query($db,$sql);
-echo "Registration Successfully";
+
+
+
+ require_once('class.phpmailer.php');
+ require_once('class.smtp.php');
+  require_once('class.phpmaileroauthgoogle.php');
+  
+
+  
+  $body = '
+<html>
+<body>
+<p><img src="bilder/morktEmail.jpg" /></p>
+<h1>Välkommen '.$Fornamn.' '.$Efternamn.'<br></h1>
+
+
+Stämmer dina uppgifter? <br><br>
+
+<b>Födelsedatum:</b>'.$Fodelsedatum.'<br>
+<b>Email:</b>'.$Email.'<br>
+<b>Klubbnamn:</b>'.$Klubbnamn.'<br>
+<b>Gatunamn:</b>'.$Gatunamn.'<br>
+<b>Postort:</b>'.$Postort.'<br>
+<b>Postnummer:</b>'.$Postnummer.'<br>
+_________________________________________________________________<br><br>
+<b>Skidloppet AB</b><br>
+<b>Mail:</b> grupp4ab@gmail.com<br>
+<b>Telefon:</b> 0156-10432<br>
+<b>Stad:</b>Kiruna<br>
+</body>
+</html>
+';
+ 
+    $mail = new PHPMailer();
+    $mail->CharSet =  "utf-8";
+    $mail->IsSMTP();
+    $mail->SMTPAuth = true;
+    $mail->Username = "grupp4ab@gmail.com";
+    $mail->Password = "Grupp4ABpass";
+    $mail->SMTPSecure = "ssl";  
+    $mail->Host = "smtp.gmail.com";
+    $mail->Port = "465";
+ 
+    $mail->setFrom('grupp4ab@gmail.com', 'Skidloppet AB');
+    $mail->AddAddress($Email, 'receivers name');
+    $mail->MsgHTML($body);
+    $mail->Subject  =  'Välkommen '.$Fornamn.'';
+    $mail->IsHTML(true);
+
+
+
+						
+
+  
+     if($mail->Send())
+     {
+        echo "Ditt konto är skapat! <br>Kolla din E-post för mer information";
+		
+     }
+     else
+     {
+        echo "Mail Error - >".$mail->ErrorInfo;
+     }
+
   }}
 ?>
+<?php
+
+
+?>
+
         
 </form> <!-- /form -->
     </div> <!-- ./container -->
