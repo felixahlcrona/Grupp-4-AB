@@ -225,7 +225,15 @@ _________________________________________________________________<br><br>
   
      if($mail->Send())
      {
-        echo "Ditt konto är skapat! <br>Kolla din E-post för mer information";
+       
+		
+		echo '<div class="form-group">';
+                  echo  '<div class="col-sm-9 col-sm-offset-3">';
+				 echo '<img src="bilder/yes.png" align="right" />';
+				  echo "Ditt konto är skapat! <br>Kolla din E-post för mer information";
+                    echo '</div>';
+             echo   '</div>';
+
 		
      }
      else
