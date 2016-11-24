@@ -34,6 +34,11 @@
       hr {
         border:1px solid #eee;
       }
+	  
+	  h2.reg-text
+	  {
+		  padding-right:120px;
+	  }
 
 	 
 
