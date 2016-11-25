@@ -1,27 +1,11 @@
+<?php 
 
-<?php
+session_start();
 
-$dom = new DOMDocument();
-$html = file_get_contents('webshop.php');
-
-@$dom->loadHTML($html);
-
-$a = $dom->getElementsByTagName('a.product');
-
-for ($i; $i < $a->length; $i++) {
-$attr = $a->item($i)->getAttribute('target');
-
-echo $attr . "\n";
-
-print_r($attr);
-
-}
-
+require_once('db.php');
 
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -76,6 +60,9 @@ else {
 }
 
 ?>
+
+
+?>
   
     <!-- Header -->
 
@@ -83,71 +70,95 @@ else {
 
     <!-- End of header -->
 
-    <!-- Product thumbnail -->
-      <hr class="divider">
 
-      <div class="row clearfix" style="margin:0px 80px;">
-        <div class="col-sm-6 col-md-3">
-        <div class="thumbnail">
-        <img src="bilder/treningbyxor.jpg" alt="Träningsbyxor"/>
-        <div class="caption">
-          <h3 class="pull-right">99 kr</h3>
-          <h3>Träningsbyxor</h3>
-          <p>Mjuka träningsbyxor med gettyg. Köp endast för att få den ultimata känslan.</p>
-          <p><a href="item_detail.php" class="btn btn-success product" target="1" role="button">Välj</a></p>
+      <div style="margin-top:30px;"></div>
+
+      <div class="container" style="width:60%;">
+
+      <h2 align="center">Fynda dina produkter i vår webshop!</h2>
+      <?php 
+
+      $result = mysqli_query($db, 'SELECT * FROM Produkter');
+      if(mysqli_num_rows($result) > 0) 
+
+      {
+        while($row = mysqli_fetch_array($result))
+        {
+
+          ?>
+
+          <div class="col-md-3">
+          <form method="POST" action="shop.php?action=add&ProduktID=<?php echo $row['ProduktID']; ?>">
+          <div style="border:1px solid lightblue; margin:-1px 19px 3px -1px; padding:10px; align:center;">
+          <img src="bilder/treningsjacka.jpg" class="img-responsive">
+          <h5 class="text-info"><?php echo $row['Produktnamn']; ?></h5>
+          <h5 class="text-info"><?php echo $row['Beskrivning']; ?></h5>
+          <h5 class="text-danger"><?php echo $row['Pris']; ?> SEK</h5>
+          <input type="text" name="quantity" class="form-control" value="1">
+          <input type="hidden" name="hidden_name" value="<?php echo $row['Produktnamn']; ?>">
+          <input type="hidden" name="hidden_price" value ="<?php echo $row['Pris']; ?>">
+          <input type="submit" name="add" style="margin-top:5px;" class="btn btn-default" value="Lägg til i kundvagnen">
+          </div>
+          </form>
+          </div>
+
+          <?php
+
+        }
+
+      }
+
+      ?>
+
+      <div style="clear:both;"></div>
+
+      <h2>Min kundvagn</h2>
+      <div class="table-responsive">
+      <table class="table table-bordered">
+      <tr>
+      <th width="40%">Produktnamn</th>
+      <th width="10%">Antal</th>
+      <th width="20%">Pris</th>
+      <th width="15%">Totalpris</th>
+      <th width="5%">Ta bort</th>
+      </tr>
+
+      <?php
+
+      if(!empty($_SESSION['cart'])) {
+
+        $total = 0;
+        foreach($_SESSION['cart'] as $keys => $values) {
+
+          ?>
+
+          <tr>
+            <td><?php echo $values["item_name"]; ?></td>
+            <td><?php echo $values["item_quantity"]; ?></td>
+            <td><?php echo $values["product_price"]; ?>SEK</td>
+            <td><?php echo number_format($values["item_quantity"] * $values["product_price"], 2); ?></td>
+            <td><a href="shop.php?action=delete&ProduktID=<?php echo $values["product_id"]; ?>"><span class="text-danger">X</span></a></td>
+          </tr>
+          <?php
+
+          $total = $total + ($values["item_quantity"] * $values["product_price"]);
+
+        }
+
+        ?>
+
+        <tr>
+        <td colspan="3" align="right">Total</td>
+        <td align="right"><?php echo number_format($total, 2); ?></td>
+        <td><a href="checkout.php" class="btn btn-success">Checka ut</a></td>
+         </tr>
+        <?php
+      }
+
+      ?>
+      </table>
       </div>
-    </div>
-  </div>
-
-
-
-
-        <div class="col-sm-6 col-md-3">
-        <div class="thumbnail">
-        <img src="bilder/vallaservice.jpg" alt="Träningsbyxor"/>
-        <div class="caption">
-        <h3 class="pull-right">299 kr</h3>
-          <h3>Valla</h3>
-          <p>Glöm inte att valla valla vallivalla dina valladevallvallor från vivalla</p>
-          <p><a href="vallas.php" class="btn btn-success" role="button" target="2">Välj</a>
       </div>
-    </div>
-  </div>
-
-
-
-        <div class="col-sm-6 col-md-3">
-        <div class="thumbnail">
-        <img src="bilder/dricka.jpg" alt="Träningsbyxor"/>
-        <div class="caption">
-        <h3 class="pull-right">19 kr</h3>
-          <h3>Energidryck</h3>
-          <p>Piggna till med en energikick innan din tävling! Vi erbjuder de godaste smakerna.</p>
-          <p><a href="produkt_dryck.php" class="btn btn-success" role="button" target="3">Välj</a></p>
-      </div>
-    </div>
-  </div>
-
-
-
-        <div class="col-sm-6 col-md-3">
-        <div class="thumbnail">
-       <img src="bilder/vallningservice.jpg" alt="Träningsbyxor"/>
-        <div class="caption">
-        <h3 class="pull-right">99 kr</h3>
-          <h3>Thumbnail label</h3>
-          <p>...</p>
-          <p><a href="#" class="btn btn-primary" role="button">Välj</a> <a href="#" class="btn btn-default" role="button" target="4">Detaljer</a></p>
-      </div>
-    </div>
-  </div>
-
-  </div>
-
-
-    <!-- End of Product thumbnail -->
-
-
 
 </body>
 </html>

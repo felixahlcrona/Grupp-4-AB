@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <?php
 
-
+$timestamp = strtotime($date);
+$cDate = strtotime(date('Y-m-d H:i:s'));
 require_once('connect.php');
 
 // Start the session
@@ -160,7 +161,7 @@ $_SESSION["resapris"]=$row['Pris'];
 
 
 
-    <style type="text/css">
+     <style type="text/css">
      
 
 
@@ -170,14 +171,46 @@ $_SESSION["resapris"]=$row['Pris'];
 	{
 	padding-left: 50px;
     width: 100%;
+	max-width:1700px;
+	min-width:1600px;
     padding-bottom: 100px;
     position: absolute;
+	
 		
 	}
-<!-- styling för kundvangn !-->
 	.pure-table {
 	width: 300px;
+	border:none;
 	}
+	
+	.pure-table td{
+border:none!important;
+	}
+	
+	
+<!-- styling för kundvangn headning!-->
+
+#sticky {
+	
+  margin-top: 100px!important;
+    padding: 0.5ex;
+
+    background-color: #333;
+    color: #fff;
+    font-size: 2em;
+    border-radius: 0.5ex;
+}
+
+#sticky.stick {
+	max-width: 25%;
+    margin-top: 70px!important;
+    position: fixed;
+    top: 0;
+    z-index: 10000;
+    border-radius: 0 0 0.5em 0.5em;
+}
+
+
 <!-- styling för kundvangn headning!-->
 		table.table4  {
 	color: black; 
@@ -187,6 +220,7 @@ $_SESSION["resapris"]=$row['Pris'];
 	collapse; border-spacing: 0;
 	}
 	
+	
 	td.headertd{
 		border: 0px;
 		background: white;
@@ -195,7 +229,7 @@ $_SESSION["resapris"]=$row['Pris'];
 	}
 	
 	td.empty{
-		border: none!important;
+		border-left: none!important;
 		background: none!important;
 		padding: 0px;
 	
@@ -235,15 +269,13 @@ $_SESSION["resapris"]=$row['Pris'];
 	}
 	
 		table.table11{
-	color: white;
+	color: balck;
 	font-family: Helvetica, Arial, sans-serif; /* Nicer font */
-	width: 550px;
+	width: 500px;
     border-collapse: collapse;
 	collapse; border-spacing: 0;
-	text-shadow: 2px 2px 15px black;
+
 	font-size: 120%;
-	margin-top: 40px;
-	width: 550px;
 	}
 	
 	table.table11 td{
@@ -331,50 +363,87 @@ font-weight:bold;
 	   
 		background:lightgreen;
 	}
+	
+	
+
 	.order {
-		top: 10%;
+		margin-top:3%;
 		position: absolute;
 		right: 50px;
 	}	
+		
+	
 
 	.mainboka{
+		
 	background-image: url("bilder/header.jpg");
 	height: 400px;
 	width: 100%; 
 	background-size:cover
     position: relative;
 	background-size: 100% 100%;
+	}	
+	
+	.mainboka{
+		
+	background-image: url("bilder/header.jpg");
+	height: 400px;
+	width: 100%; 
+	background-size:cover
+    position: relative;
+	background-size: 100% 100%;
+
 	}
+	
 	.maintext1{
 	
 	position:relative;
-  
+	opacity:1;
 	top:150px;
 	width: 970px;
 	height: 100px;
 	margin: auto;
-
 	color: white;
 	text-shadow: 2px 2px 5px black;
-	margin-left: auto;
 
 }
 
-	.maintext2{
-	opacity:0;
+
+
+	.maintext4{
+	
 	position:relative;
-	top: 180px;
-	width: 600px;
+
+	top:180px;
+	width: 500px;
 	margin: auto;
+	float: left;
+	margin-left: 35%;
+	margin-right: auto;
 	color: white;
 	text-shadow: 2px 2px 5px black;
+
 }
+	.maintext5{
+	
+	position:relative;
+margin-right:10%;
+	top:180px; 
+	width: 300px;
+	
+display:none; 
+	float: right;
+	color: white;
+	text-shadow: 2px 2px 5px black;
+
+}
+
 h3 {
 	font-family: Montserrat,sans-serif;
     font-style: normal;
     font-variant: normal;
     font-weight: 700;
-    letter-spacing: normal;
+    letter-spacing: 1px;
     line-height: 1.2em;
     text-transform: none
 	font-size: 37px;
@@ -390,18 +459,33 @@ h3 {
 	font-family: Montserrat,sans-serif;
     font-style: normal;
     font-variant: normal;
-    font-weight: 700;
+    font-weight: 300;
     letter-spacing: normal;
     line-height: 1.2em;
     text-transform: none
 	font-size: 30px;
 	margin:0 px;
 	margin-top:0px;
-    font-size: 79px!important;
-    letter-spacing: -5px!important;
+    font-size: 69px!important;
+
 	
 		color: white;
 			text-shadow: 2px 2px 5px black;
+
+ }
+  h10 {
+	font-family: Montserrat,sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.2em;
+    text-transform: none
+
+	margin:0 px;
+	margin-top:0px;
+    font-size: 20px!important;
+	color: white;
 
  }
 h6 {
@@ -464,67 +548,62 @@ h6 {
       content: none;
   }
   .progressbar li.active {
-      color: green;
+      color: black;
   }
   .progressbar li.active:before {
-      border-color: green;
+      border-color: #24BCF4;
       top: 15px;;
     
   }
   .progressbar li.active + li:after {
-      background-color: green;
+      background-color: #24BCF4;
       top: 15px;;
   }
 
 
 .sidbild1 {
-	background-repeat: no-repeat;
-  background-position: center ;
+background-repeat: no-repeat;
+  background-position: center center;
+   background-size: cover;
 	background-image: url("bilder/gel.jpg");
   width: 100%;
-  max-width: 400px;
-  height: 380px;
+max-width: 510px;
+ margin-right:20px;
   overflow: hidden;
- margin-top: 5%;
- float:left;
+ 
+
 }
 
 .bildtext {
-	
+	background: -moz-linear-gradient(top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
 	width: 100%;
-  max-width: 400px;
    height: 100px;
   top: 100px;
   text-align: center;
 }
 
-.bildtext2 {
-	
-	width: 100%;
-  max-width: 200px;
-   height: 100px;
-  top: 100px;
-  text-align: center;
-}
 .bildtext3 {
 	
 	text-shadow: 2px 2px 5px black;
 	width: 100%;
-  max-width: 280px;
-  height: 280px;
+
+ 
   display:table-cell;
   color: white;
   vertical-align: bottom;
-  text-align: left;
+  text-align: center;
 }
 .sidbild2 {
   width: 100%;
-  max-width: 400px;
-  height: 380px;
+ max-width: 510px;
+
   overflow: hidden;
- margin-top: 5%;
- float:left;
- background-image: url("bilder/buss.png.jpg");
+
+
+ background-image: url("bilder/buss.jpg");
    background-repeat: no-repeat;
   background-position: center center;
    background-size: cover;
@@ -534,21 +613,21 @@ h6 {
   background-position: center center;
 	background-image: url("bilder/valla1.png");
   width: 100%;
-  max-width: 300px;
-  height: 380px;
+  max-width: 800px;
+  
   overflow: hidden;
- margin-top: 5%;
+ margin-top: 2%;
 
- float:left;
+
 
 }
 
 .accordion {
   width: 100%;
-  max-width: 700px;
+max-width: 760px;
   height: 380px;
   overflow: hidden;
- margin-top: 5%
+
 }
 
 
@@ -574,7 +653,7 @@ h6 {
 
 .accordion ul li div {
   display: block;
- background: rgba(0, 0, 0, 0.4);
+
  
   width: 100%;
   height: 100%;
@@ -589,17 +668,21 @@ h6 {
 
 
 .accordion ul li div h2 {
-  font-family: Montserrat, sans-serif;
+ 	font-family: Montserrat,sans-serif;
+	font-style: normal;
+    font-variant: normal;
+    font-weight: 300;
+    letter-spacing: -1px;
   text-overflow: clip;
   font-size: 28px;
   text-transform: uppercase;
   margin-bottom: 2px;
    padding-top: 15px;
-  color: black;
+  color: white;
   z-index:3;
   padding-left:15px;
   margin-top: 0px;
-
+text-shadow: 2px 2px 5px black;
 
 }
 
@@ -621,28 +704,26 @@ padding-left: 30px;
 .accordion ul li div h4{
 		position: absolute;
 	text-overflow: clip;
-		color: white;
+	
 	font-size:60px;
 	padding-left: 20px;
 	top:300px;
-	text-shadow: 2px 2px 5px black;
 
 }
 
 .accordion ul li div h5{
 		position: absolute;
 	
-		color: white;
+		
 	font-size: 20px;
 	padding-left: 160px;
 	top:310px;
-	text-shadow: 2px 2px 5px black;
 }
-.accordion ul li:nth-child(1) {  background-image: url("bilder/simple.jpg") }
+.accordion ul li:nth-child(1) {        background: linear-gradient(to bottom right,#EBEBE3, white);; }
 
-.accordion ul li:nth-child(2) {   background-image: url("bilder/simple2.jpg") }
+.accordion ul li:nth-child(2) {    background: linear-gradient(to bottom right,#EBEBE3, white); }
 
-.accordion ul li:nth-child(3) {  background: #68655f; }
+.accordion ul li:nth-child(3) {    background: linear-gradient(to bottom right,#EBEBE3, white); }
 
 .accordion ul:hover li { width: 8%; }
 
@@ -672,7 +753,8 @@ padding-left: 30px;
     </style>
 
   </head>
-  <body>
+   <body>
+
     <!-- Header -->
 	
 
@@ -703,111 +785,125 @@ padding-left: 30px;
 <div class="maintext1">
 <h3> Boka ditt evenemang </h3>
 </div>
-<div class="maintext2">
-<h6 > Välj tjänster </h6>
+<div class="maintext4">
+<h6 > Boka evenemang </h6>
+</div>
+<div class="maintext5">
+<h6 > Välj tjänst </h6>
 </div>
 </div>
 <div class="bar">
       <ul class="progressbar">
           <li class="active">Evenemang</li>
           <li class="active">Tjänster</li>
-          <li>Utcheckning</li>
+          <li class="active">Utcheckning</li>
           
   </ul>
  </div>
     <div class="collapsboka">
+    <div class="order">
+	
 
-<div class="order">
+  <div id="sticky-anchor" ></div>
+
+<div id="sticky" style="right: 50px;">
 <table class=table4>
 
 <td class=headertd2> Din beställning </td>
 
 </tr> 
 </table>
-<table class =pure-table >
-<tr>
-<th width=60%;> Evenemang </th>
-<th width=40%;> Pris </th>
-<th class="empty"> </th>
+<table class =pure-table style="width: 400px;" >
+<tr style="border-bottom: 1px solid #eee;">
+<td  style="font-weight: 600;" width=60%;> EVENEMANG </td>
+<td colspan= 2 width=40%; style="font-weight: 600;"> Pris </td>
 </tr>
-<tr>
+<tr >
 <td> <?PHP print $_SESSION["evenemang"]?> </td>
-<td> <?PHP print $_SESSION["evenemangpris"]?> SEK </td>
+<td colspan= 2 > <?PHP print $_SESSION["evenemangpris"]?> SEK </td>
 
 </tr>
-<tr>
-<th colspan= 2> Tjänster </th>
+<tr style="border-bottom: 1px solid #eee;" >
+<td style="font-weight: 600;" colspan= 3> TJÄNSTER </td>
 
 </tr>
-<tr>
+<tr >
 <td> 	<?PHP print $_SESSION["valla"] ?> </td> 
-<td  > 	<?PHP print $_SESSION["vallapris"]  ?> SEK</td> 
+<td style="border-right: none" > 	<?PHP print $_SESSION["vallapris"]  ?> SEK</td> 
 <FORM method ="post" >
  <?PHP if ($_SESSION["valla"] == 'Motionär' || $_SESSION["valla"] == 'Race' || $_SESSION["valla"] == 'Elit race') {
-	echo "<td class='empty' >";
+	echo "<td style='border-left: 0px;' >";
 	echo "<button name='valla' class='tabortknapp' type='submit' value='ingenvalla'>";
 	echo "x";
 	echo "</button>";
 	echo "</td>";
-	
+ }
+ else{
+		echo "<td style='border-left: 0px;'></td>";
  }
 ?>  
 </FORM >
 </tr>
 
-<tr>
+<tr 	>
 
 <td> <?PHP print $_SESSION["langning"]?>  </td> 
-<td> 	<?PHP print $_SESSION["langningpris"] ?> SEK </td> 
+<td style="border-right: none"> 	<?PHP print $_SESSION["langningpris"] ?> SEK </td> 
 
 <FORM method ="post" >
  <?PHP if ($_SESSION["langning"] == 'Halv langning' || $_SESSION["langning"] == 'Hel langning') {
-	echo "<td class='empty' >";
+	echo "<td style='border-left: 0px;' >";
 	echo "<button name='langning' class='tabortknapp' type='submit' value='ingenlangning'>";
 	echo "x";
 	echo "</button>";
 	echo "</td>";
-	
+ }
+  else{
+		echo "<td style='border-left: 0px;'></td>";
  }
 ?>  
 </FORM >
 </tr>
 
-<tr>
+<tr style="border-bottom: 1px solid #eee;">
 <td> <?PHP print $_SESSION["resa"]?>  </td> 
-<td> <?PHP print $_SESSION["resapris"]?>  SEK </td> 
+<td style="border-right: none"> <?PHP print $_SESSION["resapris"]?>  SEK </td> 
 <FORM method ="post" >
  <?PHP if ($_SESSION["resa"] == 'Mål till start' || $_SESSION["resa"] == 'Start till mål'){
-	echo "<td class='empty' >";
+	echo "<td style='border-left: 0px;'>";
 	echo "<button name='resa' class='tabortknapp' type='submit' value='ingenresa'>";
 	echo "x";
 	echo "</button>";
 	echo "</td>";
-	
+ }
+  else{
+		echo "<td style='border-left: 0px;'></td>";
  }
 ?>  
 </FORM >
 </tr>
 <tr>
-<th> Totalpris </th>
+<td style="font-weight: 600;"> TOTALPRIS </td>
 <?PHP $_SESSION["totalpris"] = $_SESSION["resapris"] + $_SESSION["langningpris"] + $_SESSION["vallapris"] +  $_SESSION["evenemangpris"] ?> 
-<th> <?PHP print $_SESSION["totalpris"]?>  SEK  </th>
+<td colspan= 2 style="font-weight: 600;"> <?PHP print $_SESSION["totalpris"]?>  SEK  </td>
 </tr>
  
  <tr>
-<td colspan=2  class="knapp" style="border: none" > <a href="bokaevenemang.php"><button class="btn btn-info btn-lg"  style="width:350px;" >< Tillbaka till evenemang</button></a></td> 
+<td colspan=3  class="knapp" style="border: none" > <a href="evenemang3.php"><button class="btn btn-info btn-lg"  style="width:399px;" ><h10> < TILLBAKA</h10></button></a></td> 
 </tr>
 <tr>
-<td colspan=2  class="knapp" style="border: none" > <a href="bokatjanster.php"><button class="btn btn-info btn-lg"  style="width:350px;" >Nästa steg</button></a></td> 
+<td colspan=3  class="knapp" style="border: none" > <a href="utcheckningev.php"><button class="btn btn-info btn-lg"  style="width:399px;" ><h10>TILL UTCHEKNING ></10></button></a></td> 
 </tr>
 </table>
  </div>
+ </div>
  
-
+<div style="float:left; margin-top: 5%;" >
 <div class="sidbild1"> 
+
 <div class="bildtext"><h7>Langning</h7> </div>
 </div>
-<div class="accordion" style="width:510px;">
+<div class="accordion" style="width:510px;  margin-right:30px;">
   <ul>
    
      <li style="z-index: 8;">
@@ -909,9 +1005,9 @@ padding-left: 30px;
 	</li>
   </ul>
 </div>
+</div>
 
-
-
+<div style="margin-top: 5%;">
 <div class="sidbild2"> 
 <div class="bildtext"><h7>Bussresa</h7> </div>
  </div>
@@ -965,13 +1061,13 @@ padding-left: 30px;
 		</div>
 		</div>
 	</li>
+	
     <li style="z-index: 8;">
       <div ";> 
         <div style="height:20%; background:#F9F9F9;">
 	    <?php
 		foreach($pdo->query( 'SELECT * FROM Tjanster where TjanstID=07' ) as $row){
-			
-?>
+			?>
         <h2>  <?php print $row['Tjanstnamn']?>  </h2> 
   
 		
@@ -1016,10 +1112,11 @@ padding-left: 30px;
 	</li>
   </ul>
 </div>
+</div>
 
 
 <div class="vallabild"> 
-<div class="bildtext2"><h7>Valla</h7> </div>
+<div class="bildtext"><h7>Valla</h7> </div>
 <div class="bildtext3"><p>*Vallningservice erbjuds endast i samband med skidevenemng</p> </div>
 </div>
 <div class="accordion">
@@ -1034,7 +1131,7 @@ padding-left: 30px;
         <h2>  <?php print $row['Tjanstnamn']?>  </h2> 
   
 		
-		<table class="table10">
+		<table class="table11" style="width: 600px;">
 		<tr>
 		<th width=240px;>Infomation om Tjänst</th> <th>Motionär inehåller</th> 
 		</tr>
@@ -1057,11 +1154,19 @@ padding-left: 30px;
 <tr style="border-bottom: none;"  >
 <td></td>
 		<FORM  method ="post" >
-<?php if ($_SESSION["evenemang"] == 'Skidlopp'){
-echo "<td class='knapp' style='padding-top: 55px;'><button name='valla' class='btn btn-info btn-lg' style='width: 300px;' type='submit' value='motionar'>Lägg till</button></td>";
+		
+<?php 
+$_SESSION["evenemangdatum"] - 172800;
+if ( $_SESSION['evenemangdatum'] > $cDate){
+	echo "<td class='knapp' style='padding-top: 130px; padding-left: 15px;' ><button name='valla' disabled class='btn btn-info btn-lg disabled' style='width: 300px;' type='submit' value='elit'>Försent</button></td>";
+}
+else{
+if ($_SESSION["evenemang"] == 'Skidlopp'){
+echo "<td class='knapp' style='padding-top: 130px; padding-left: 15px;'><button name='valla' class='btn btn-info btn-lg' style='width: 300px;' type='submit' value='motionar'>Lägg till</button></td>";
 }
 else {
-	echo "<td class='knapp' style='padding-top: 55px;'><button name='valla' disabled class='btn btn-info btn-lg disabled' style='width: 300px;' type='submit' value='motionar'>Ej skidevenemang</button></td>";
+	echo "<td class='knapp' style='padding-top: 130px; padding-left: 15px;'><button name='valla' disabled class='btn btn-info btn-lg disabled' style='width: 300px;' type='submit' value='motionar'>Ej skidevenemang</button></td>";
+}
 }
 ?>
 </FORM>
@@ -1086,7 +1191,7 @@ else {
         <h2>  <?php print $row['Tjanstnamn']?>  </h2> 
   
 		
-		<table class="table10">
+		<table class="table11" style="width: 600px;">
 		<tr>
 		<th width=240px;>Infomation om Tjänst</th> <th>Racer inehåller</th> 
 		</tr>
@@ -1110,11 +1215,18 @@ else {
 <td></td>
 	<FORM  method ="post" >
 	
-<?php if ($_SESSION["evenemang"] == 'Skidlopp'){
-echo "<td class='knapp' style='padding-top: 55px;'><button name='valla' class='btn btn-info btn-lg' style='width: 300px;' type='submit' value='race'>Lägg till</button></td>";
+<?php 
+$_SESSION["evenemangdatum"] - 172800;
+if ( $_SESSION['evenemangdatum'] > $cDate){
+	echo "<td class='knapp' style='padding-top: 100px; padding-left: 15px;'><button name='valla' disabled class='btn btn-info btn-lg disabled' style='width: 300px;' type='submit' value='elit'>Försent</button></td>";
+}
+else{
+if ($_SESSION["evenemang"] == 'Skidlopp'){
+echo "<td class='knapp' style='padding-top: 100px; padding-left: 15px;'><button name='valla' class='btn btn-info btn-lg' style='width: 300px;' type='submit' value='race'>Lägg till</button></td>";
 }
 else {
-	echo "<td class='knapp' style='padding-top: 55px;'><button name='valla' disabled class='btn btn-info btn-lg disabled' style='width: 300px;' type='submit' value='race'>Ej skidevenemang</button></td>";
+	echo "<td class='knapp' style='padding-top: 100px; padding-left: 15px;'><button name='valla' disabled class='btn btn-info btn-lg disabled' style='width: 300px;' type='submit' value='race'>Ej skidevenemang</button></td>";
+}
 }
 ?>
 </FORM>
@@ -1139,7 +1251,7 @@ else {
         <h2>  <?php print $row['Tjanstnamn']?>  </h2> 
   
 		
-		<table class="table10">
+		<table class="table11" style="width: 600px;">
 		<tr>
 		<th width=240px;>Infomation om Tjänst</th> <th>Elit racer inehåller</th> 
 		</tr>
@@ -1162,11 +1274,19 @@ else {
 <tr style="border-bottom: none;"  >
 <td></td>
 	<FORM  method ="post" >
-<?php if ($_SESSION["evenemang"] == 'Skidlopp'){
-echo "<td class='knapp' style='padding-top: 55px;'><button name='valla' class='btn btn-info btn-lg' style='width: 300px;' type='submit' value='elit'>Lägg till</button></td>";
+<?php 
+$_SESSION['evenemangdatum'] - 172800;
+if ( $_SESSION['evenemangdatum']  > $cDate){
+if ($_SESSION["evenemang"] == 'Skidlopp'){
+echo "<td class='knapp' style='padding-top: 80px; padding-left: 15px;'><button name='valla' class='btn btn-info btn-lg' style='width: 300px;' type='submit' value='elit'>Lägg till</button></td>";
 }
 else {
-	echo "<td class='knapp' style='padding-top: 55px;'><button name='valla' disabled class='btn btn-info btn-lg disabled' style='width: 300px;' type='submit' value='elit'>Ej skidevenemang</button></td>";
+	echo "<td class='knapp' style='padding-top: 80px; padding-left: 15px;'><button name='valla' disabled class='btn btn-info btn-lg disabled' style='width: 300px;' type='submit' value='elit'>Ej skidevenemang</button></td>";
+}}
+else{
+
+
+	echo "<td class='knapp' style='padding-top: 55px; padding-left: 80px;'><button name='valla' disabled class='btn btn-info btn-lg disabled' style='width: 300px;' type='submit' value='elit'>Försent</button></td>";
 }
 ?>
 </FORM>
@@ -1185,10 +1305,10 @@ else {
 </div>
 
 <?php
-print $_POST['valla']; 
+print $cDate;
+echo "LLLL";
+print $_SESSION["evenemangdatum"];
 
-print $_SESSION["valla"];
- print $_SESSION["vallapris"];
   ?>
 </div>
 
