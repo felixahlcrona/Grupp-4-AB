@@ -1,3 +1,10 @@
+<?php 
+
+session_start();
+require('db.php');
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -47,7 +54,11 @@
 
     <hr class="divider">
 
+
       <div class="container">
+
+      <h2 style="text-align: center;"><a href="webshop.php">Fortätt handla</a></h2>
+
     <div class='row'>
         <div class='col-md-4'></div>
         <div class='col-md-4'>
@@ -83,13 +94,16 @@
               <div class='col-md-12'>
                 <div class='form-control total btn btn-info'>
                   Pris:
-                  <span class='amount'>$300</span>
+                  <span class='amount'><?php echo $_SESSION['totalpris']; ?></span>
                 </div>
               </div>
             </div>
+
             <div class='form-row'>
               <div class='col-md-12 form-group'>
-                <button class='form-control btn btn-primary submit-button' type='submit'>Betala »</button>
+              <form action="checkout.php" method="POST">
+                <button class='form-control btn btn-primary submit-button' type='submit'><input type="submit" name="pay" value="Betala" style="background:transparent; border:0;"></button></form>
+
               </div>
             </div>
             <div class='form-row'>
@@ -104,6 +118,16 @@
         <div class='col-md-4'></div>
     </div>
 </div>
+
+
+<?php 
+
+  if(isset($_POST['pay'])) {
+    header('Location:webshop.php');
+  }
+
+ ?>
+
 
     </body>
 
