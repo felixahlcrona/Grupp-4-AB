@@ -75,7 +75,7 @@ else {
 
       <div class="container" style="width:60%;">
 
-      <h2 align="center">Fynda dina produkter i vår webshop!</h2>
+      <h2 align="center">Ta en titt och fynda våra produkter!</h2>
       <?php 
 
       $result = mysqli_query($db, 'SELECT * FROM Produkter');
@@ -127,7 +127,7 @@ else {
 
       if(!empty($_SESSION['cart'])) {
 
-        $total = 0;
+        $_SESSION['totalpris'] = 0;
         foreach($_SESSION['cart'] as $keys => $values) {
 
           ?>
@@ -141,7 +141,9 @@ else {
           </tr>
           <?php
 
-          $total = $total + ($values["item_quantity"] * $values["product_price"]);
+         // $total = $total + ($values["item_quantity"] * $values["product_price"]);
+
+          $_SESSION['totalpris'] = $_SESSION['totalpris'] + ($values["item_quantity"] * $values["product_price"]);
 
         }
 
@@ -149,7 +151,7 @@ else {
 
         <tr>
         <td colspan="3" align="right">Total</td>
-        <td align="right"><?php echo number_format($total, 2); ?></td>
+        <td align="right"><?php echo number_format($_SESSION['totalpris'], 2); ?></td>
         <td><a href="checkout.php" class="btn btn-success">Checka ut</a></td>
          </tr>
         <?php
