@@ -48,7 +48,12 @@ require('db.php');
 
     <!-- Header -->
 
-   <?php require_once('includes/header.php'); ?>
+   <?php require_once('includes/header.php'); if(empty($_SESSION['KundID'])) {
+header('Location: login.php');
+}?>
+
+
+   
 
     <!-- End of header -->
 
