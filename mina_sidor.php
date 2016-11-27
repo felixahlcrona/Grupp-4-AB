@@ -26,25 +26,20 @@
         text-align: center;
         margin-bottom:20px;
       }
-
       .divider {
         margin:80px 0;
       }
-
       hr {
         border:1px solid #eee;
       }
-
-	   .container {
+     .container {
         border:10px solid #eee;
-		background-color:#EDF3F5;
+    background-color:#EDF3F5;
       }
   .clearfix {
         border:1px solid #eee;
-		background-color:#EDF3F5;
+    background-color:#EDF3F5;
       }
-
-
     </style>
 
   </head>
@@ -53,24 +48,38 @@
 
 
   <?php require_once('includes/header.php'); 
-session_start();
+
+  print_r($_SESSION['active']);
+
+if($_SESSION['active'] != 1 && !empty($_SESSION['active'])) {
+header('Location: activate.php');
+}
+
+
+
+if(empty($_SESSION['KundID'])) {
+header('Location: login.php');
+}
+
+
 
   ?>
+
 <?php    
- $pdo = new PDO('mysql:dbname=Grupp4AB;host=wwwlab.iit.his.se', 'sqllab', 'Tomten2009');
-	$pdo->exec("set names utf8");
-  $sqlkod = "UPDATE Kund SET Gatunamn = :Gatunamn, Postort =:Postort, Postnummer =:Postnummer, Klubbnamn =:Klubbnamn WHERE Email = :Email";
-	  $pdo = $pdo->prepare($sqlkod);   
+
+require_once('connection.php');
+
+$sqlkod = "UPDATE Kund SET Gatunamn = :Gatunamn, Postort =:Postort, Postnummer =:Postnummer, Klubbnamn =:Klubbnamn WHERE Email = :Email";
+$pdo = $pdo->prepare($sqlkod);
+ 
 $pdo->bindParam(':Email', $_POST['Email'], PDO::PARAM_INT);
 $pdo->bindParam(':Gatunamn', $_POST['Gatunamn'], PDO::PARAM_INT);
 $pdo->bindParam(':Postort', $_POST['Postort'], PDO::PARAM_INT);
 $pdo->bindParam(':Postnummer', $_POST['Postnummer'], PDO::PARAM_INT);
 $pdo->bindParam(':Klubbnamn', $_POST['Klubbnamn'], PDO::PARAM_INT);
 $pdo->bindParam(':Email', $_POST['Email'], PDO::PARAM_INT); 
-
 $pdo->execute();    
-
-	 
+   
 ?>
 
 
@@ -98,7 +107,7 @@ $pdo->execute();
                     <div class="col-sm-9">
                      <?php echo '<input required  type = "text" class ="form-control" name = "Email" value="'.$_SESSION["Email"].'" />'?>
 
-						
+            
                     </div>
                 </div>
                 <div class="form-group">
@@ -106,7 +115,7 @@ $pdo->execute();
                     <div class="col-sm-9">
                      <?php echo '<input required  type = "text" class ="form-control" name = "Gatunamn" value="'.$_SESSION["Gatunamn"].'" />'?>
 
-						
+            
                     </div>
                 </div>
 
@@ -114,22 +123,22 @@ $pdo->execute();
                     <label for="Fornamn" class="col-sm-3 control-label">Postort</label>
                     <div class="col-sm-9">
                              <?php echo '<input required  type = "text" class ="form-control" name = "Postort" value="'.$_SESSION["Postort"].'" />'?>
-						
+            
                     </div>
                 </div>
-				
-				 <div class="form-group">
+        
+         <div class="form-group">
                     <label for="Efternamn" class="col-sm-3 control-label">Postnummer</label>
                     <div class="col-sm-9">
                              <?php echo '<input required  type = "text" class ="form-control" name = "Postnummer" value="'.$_SESSION["Postnummer"].'" />'?>
-						
+            
                     </div>
                 </div>
       <div class="form-group">
                     <label for="Efternamn" class="col-sm-3 control-label">Klubbnamn</label>
                     <div class="col-sm-9">
                              <?php echo '<input required  type = "text" class ="form-control" name = "Klubbnamn" value="'.$_SESSION["Klubbnamn"].'" />'?>
-						
+            
                     </div>
                 </div>
   
