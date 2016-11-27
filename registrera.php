@@ -1,7 +1,21 @@
+<?php
+
+
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +23,7 @@
     <title>Registrera</title>
     <link rel="stylesheet" type="text/css" href="app.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <script type="text/javascript" src="js/main.js"></script>
+
 
     <!-- Bootstrap -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -34,28 +48,15 @@
       hr {
         border:1px solid #eee;
       }
-	  
-	  h2.reg-text
-	  {
-		  padding-right:120px;
-	  }
 
-	 
 
 
     </style>
 
   </head>
-<body>
+<body background="bilder/registrera.jpg">
 
-  <?php require_once('includes/header.php');
-
-session_start();
-
-
- ?>
-  
-  
+  <?php require_once('includes/header.php'); ?>
 
   <div class="clearfix" style="margin-bottom:100px;"></div>
   <div class="container">
@@ -143,19 +144,13 @@ session_start();
                
                 <div class="form-group">
                     <div class="col-sm-9 col-sm-offset-3">
-                        <button type="submit" class="btn btn-primary btn-block">Registrera</button>
+                        <button type="submit" class="btn btn-success btn-block">Registrera</button>
                     </div>
                 </div>
 
                  
-				 <?php
-// Start the session
-
-
-?>
 <?php
 include("db.php");
-
   if(isset($_POST['Fornamn'])) {
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -169,19 +164,17 @@ $Gatunamn=mysqli_real_escape_string($db,$_POST['Gatunamn']);
 $Postort=mysqli_real_escape_string($db,$_POST['Postort']);
 $Postnummer=mysqli_real_escape_string($db,$_POST['Postnummer']);
 $Losenord=mysqli_real_escape_string($db,$_POST['Losenord']);
+$active=mysqli_real_escape_string($db,generateRandomString(50));
 $confirmPassword = mysqli_real_escape_string($db, $_POST['beklosenord']);
 $Losenord=md5($Losenord); // Encrypted Password
 
-$sql="INSERT INTO Kund (Fornamn,Efternamn,Fodelsedatum,Email,Klubbnamn,Gatunamn,Postort,Postnummer,Losenord) VALUES('$Fornamn','$Efternamn','$Fodelsedatum','$Email','$Klubbnamn','$Gatunamn','$Postort','$Postnummer','$Losenord');";
+$sql="INSERT INTO Kund (Fornamn,Efternamn,Fodelsedatum,Email,Klubbnamn,Gatunamn,Postort,Postnummer,Losenord,active) VALUES('$Fornamn','$Efternamn','$Fodelsedatum','$Email','$Klubbnamn','$Gatunamn','$Postort','$Postnummer','$Losenord', '$active');";
 $result=mysqli_query($db,$sql);
 
-
-
- require_once('class.phpmailer.php');
- require_once('class.smtp.php');
-  require_once('class.phpmaileroauthgoogle.php');
+ require_once('phpmailer/class.phpmailer.php');
+ require_once('phpmailer/class.smtp.php');
+  require_once('phpmailer/class.phpmaileroauthgoogle.php');
   
-
   
   $body = '
 <html>
@@ -203,6 +196,10 @@ _________________________________________________________________<br><br>
 <b>Mail:</b> grupp4ab@gmail.com<br>
 <b>Telefon:</b> 0156-10432<br>
 <b>Stad:</b>Kiruna<br>
+<b>För att aktivera ditt konto var vänlig och klicka på följande länk:</b><br>
+
+http://wwwlab.iit.his.se/a15roban/PROJEKT_GRUPP4AB/activate.php?hash=' .$active.'
+
 </body>
 </html>
 ';
@@ -225,21 +222,13 @@ _________________________________________________________________<br><br>
 
 
 
-						
+            
 
   
      if($mail->Send())
      {
-       
-		
-		echo '<div class="form-group">';
-                  echo  '<div class="col-sm-9 col-sm-offset-3">';
-				 echo '<img src="bilder/yes.png" align="right" />';
-				  echo "Ditt konto är skapat! <br>Kolla din E-post för mer information";
-                    echo '</div>';
-             echo   '</div>';
-
-		
+        echo "Ditt konto är skapat! <br>Kolla din E-post för mer information";
+    
      }
      else
      {
@@ -253,8 +242,12 @@ _________________________________________________________________<br><br>
 
 ?>
 
+
+
         
 </form> <!-- /form -->
     </div> <!-- ./container -->
+
+        <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
