@@ -1,10 +1,12 @@
-<?php
+s<?php
 
 require_once('db.php');
 require_once('includes/init.php');
 
 
+
 if($_SESSION['active'] == 1) {
+
 	header('Location: mina_sidor.php');
 }
 
@@ -26,6 +28,7 @@ if($hash == $active) {
 
 } else {
 	echo 'Var vänlig aktivera ditt konto genom att logga in på din mail address och klicka på aktiverings länken!';
+
 }
 
 

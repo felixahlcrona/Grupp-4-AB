@@ -164,7 +164,7 @@ $Gatunamn=mysqli_real_escape_string($db,$_POST['Gatunamn']);
 $Postort=mysqli_real_escape_string($db,$_POST['Postort']);
 $Postnummer=mysqli_real_escape_string($db,$_POST['Postnummer']);
 $Losenord=mysqli_real_escape_string($db,$_POST['Losenord']);
-$active=mysqli_real_escape_string($db,generateRandomString(50));
+$active=mysqli_real_escape_string($db,generateRandomString(20));
 $confirmPassword = mysqli_real_escape_string($db, $_POST['beklosenord']);
 $Losenord=md5($Losenord); // Encrypted Password
 
@@ -179,7 +179,6 @@ $result=mysqli_query($db,$sql);
   $body = '
 <html>
 <body>
-<p><img src="bilder/morktEmail.jpg" /></p>
 <h1>Välkommen '.$Fornamn.' '.$Efternamn.'<br></h1>
 
 
