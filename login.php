@@ -43,7 +43,7 @@
   padding: 30px 38px 66px;
   margin: 0 auto;
   background-color: #eee;
-  border: 3px dotted rgba(0,0,0,0.1);  
+  border: 3px ridge rgba(0,0,0,0.1);  
   }
 
 .form-signin-heading {
@@ -115,11 +115,19 @@ input[type="password"] {
         $KundID = $row['KundID'];
         $active = $row['active'];
         $db_Losenord = $row['Losenord'];
+		$Gatunamn = $row['Gatunamn'];
+		$Postort = $row['Postort'];
+		$Postnummer = $row['Postnummer'];
+		$Klubbnamn = $row['Klubbnamn'];
 
         if($Losenord == $db_Losenord) {
-            $_SESSION['Email'] = $Email;
-            $_SESSION['KundID'] = $KundID;
-            $_SESSION['active'] = $active;
+          $_SESSION['Email'] = $Email;
+          $_SESSION['KundID'] = $KundID;
+		  $_SESSION['Gatunamn'] = $Gatunamn;
+          $_SESSION['Postort'] = $Postort;
+		   $_SESSION['Postnummer'] = $Postnummer;
+		    $_SESSION['Klubbnamn'] = $Klubbnamn;
+			$_SESSION['active'] = $active;
     
            header("Location: mina_sidor.php");
 

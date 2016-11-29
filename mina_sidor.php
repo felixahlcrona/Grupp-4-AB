@@ -67,10 +67,10 @@ header('Location: login.php');
 
 <?php    
 
-require_once('connection.php');
-
-$sqlkod = "UPDATE Kund SET Gatunamn = :Gatunamn, Postort =:Postort, Postnummer =:Postnummer, Klubbnamn =:Klubbnamn WHERE Email = :Email";
-$pdo = $pdo->prepare($sqlkod);
+ $pdo = new PDO('mysql:dbname=Grupp4AB;host=wwwlab.iit.his.se', 'sqllab', 'Tomten2009');
+	$pdo->exec("set names utf8");
+  $sqlkod = "UPDATE Kund SET Gatunamn = :Gatunamn, Postort =:Postort, Postnummer =:Postnummer, Klubbnamn =:Klubbnamn WHERE Email = :Email";
+	  $pdo = $pdo->prepare($sqlkod); 
  
 $pdo->bindParam(':Email', $_POST['Email'], PDO::PARAM_INT);
 $pdo->bindParam(':Gatunamn', $_POST['Gatunamn'], PDO::PARAM_INT);
@@ -105,7 +105,7 @@ $pdo->execute();
            <div class="form-group">
                     <label for="Email" class="col-sm-3 control-label">Email</label>
                     <div class="col-sm-9">
-                     <?php echo '<input required  type = "text" class ="form-control" name = "Email" value="'.$_SESSION["Email"].'" />'?>
+                     <?php echo '<input required  type = "text" class ="form-control" name = "Email" value="'.$_SESSION["Email"].'" readonly />'?>
 
             
                     </div>

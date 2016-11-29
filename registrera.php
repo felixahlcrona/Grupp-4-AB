@@ -49,7 +49,10 @@ function generateRandomString($length = 10) {
         border:1px solid #eee;
       }
 
-
+ h2.reg-text
+	  {
+		  padding-right:120px;
+	  }
 
     </style>
 
@@ -171,7 +174,7 @@ $Losenord=md5($Losenord); // Encrypted Password
 $sql="INSERT INTO Kund (Fornamn,Efternamn,Fodelsedatum,Email,Klubbnamn,Gatunamn,Postort,Postnummer,Losenord,active) VALUES('$Fornamn','$Efternamn','$Fodelsedatum','$Email','$Klubbnamn','$Gatunamn','$Postort','$Postnummer','$Losenord', '$active');";
 $result=mysqli_query($db,$sql);
 
- require_once('phpmailer/class.phpmailer.php');
+require_once('phpmailer/class.phpmailer.php');
  require_once('phpmailer/class.smtp.php');
   require_once('phpmailer/class.phpmaileroauthgoogle.php');
   
@@ -197,7 +200,7 @@ _________________________________________________________________<br><br>
 <b>Stad:</b>Kiruna<br>
 <b>För att aktivera ditt konto var vänlig och klicka på följande länk:</b><br>
 
-http://wwwlab.iit.his.se/a15roban/PROJEKT_GRUPP4AB/activate.php?hash=' .$active.'
+http://wwwlab.iit.his.se/a15felah/Grupp-4-AB/activate.php?hash=' .$active.'
 
 </body>
 </html>
@@ -226,7 +229,12 @@ http://wwwlab.iit.his.se/a15roban/PROJEKT_GRUPP4AB/activate.php?hash=' .$active.
   
      if($mail->Send())
      {
-        echo "Ditt konto är skapat! <br>Kolla din E-post för mer information";
+       	echo '<div class="form-group">';
+                  echo  '<div class="col-sm-9 col-sm-offset-3">';
+				 echo '<img src="bilder/yes.png" align="right" />';
+				  echo "Ditt konto är skapat! <br>Kolla din E-post för mer information";
+                    echo '</div>';
+             echo   '</div>';
     
      }
      else
