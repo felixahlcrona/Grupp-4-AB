@@ -182,6 +182,7 @@ require_once('phpmailer/class.phpmailer.php');
   $body = '
 <html>
 <body>
+<p><img src="bilder/morktEmail.jpg" /></p>
 <h1>Välkommen '.$Fornamn.' '.$Efternamn.'<br></h1>
 
 

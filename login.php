@@ -142,7 +142,7 @@ echo "<script type='text/javascript'>alert('$message');</script>";
 ?>       
        
         <button class="btn btn-lg btn-primary btn-block"  name="login" value="Login" type="Submit">Logga in</button> 
-        <a href="#" class="forgot-password" style="margin-top:20px; text-align: center;">
+        <a href="Glomtlosenord.php" class="forgot-password" style="margin-top:20px; text-align: center;">
                 Glömt lösenord?
             </a>       
     </form>     

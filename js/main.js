@@ -27,11 +27,6 @@
         return false;
       }
 
-      var g = document.forms["myForm"]["Klubbnamn"].value;
-      if(g == null || g == "") {
-        alert("Var vänlig välj Klubbnamn");
-        return false;
-      }
 
        var h = document.forms["myForm"]["Gatunamn"].value;
       if(h == null || h == "") {

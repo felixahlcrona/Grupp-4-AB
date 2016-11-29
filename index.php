@@ -66,22 +66,22 @@
     <div class="item active">
       <img src="bilder/morkt.jpg" alt="...">
       <div class="carousel-caption">
-        <h3>Ljus vintertid</h3>
-        <p>Våra härliga vintertävling i februari</p>
+        <h3>Kall vintertid</h3>
+        <p>Vår härliga vintertävling i februari</p>
       </div>
     </div>
     <div class="item">
       <img src="bilder/grabbarnacykla.jpg" alt="...">
       <div class="carousel-caption">
         <h3>Cykeltävling</h3>
-        <p>Deltagarna cyklar för fullt</p>
+        <p>Med hög puls cyklar de tävlande med full fart</p>
       </div>
     </div>
    <div class="item">
       <img src="bilder/skoog.jpg" alt="...">
       <div class="carousel-caption">
-        <h3>Hello</h3>
-        <p>Beskrivning beskrivning beskrivning</p>
+        <h3>Sommartävling</h3>
+        <p>Utforska den vackra naturen på våra sommartävlingar</p>
       </div>
     </div>
   </div>
@@ -117,7 +117,7 @@
           <img src="bilder/teest.png" alt="" class="img-circle"/>
           <h2>Evenemang</h2>
           <p>Vi har alltid många evenemang att delta i - oavsett väder och årstid. Vill du vara med och åka skidor på vintern och löpa på sommaren? Hos oss har du möljighet till allt detta. Boka direkt här!</p>
-          <a href="#" class="btn btn-primary">Boka här</a>
+          <a href="bokaevenemang.php" class="btn btn-primary">Boka här</a>
         </div>
 
       </div>
