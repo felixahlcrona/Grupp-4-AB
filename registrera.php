@@ -84,7 +84,72 @@ function generateRandomString($length = 10) {
          <div class="form-group">
                     <label for="Fodelsedatum" class="col-sm-3 control-label">Födelsedatum</label>
                     <div class="col-sm-9">
-                        <input type="text" id="Fodelsedatum" name="Fodelsedatum" placeholder="ex. 19951014-5593" class="form-control">
+                         
+
+<select class="form-control" style="width:20%; margin-right:10px; float:left;" name=year1>
+ <option value="" disabled selected hidden>År</option>
+  <?php for ($year = 1999; $year > date('Y') -117; $year--) { ?>
+	<option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+	<?php } ?>
+</select>
+
+<select class="form-control" style="width:30%; margin-right:10px; float:left;"name=month1>
+ <option value="" disabled selected hidden>Månad</option>
+<option value='01'>Januari</option>
+<option value='02'>Februari</option>
+<option value='03'>Mars</option>
+<option value='04'>April</option>
+<option value='05'>Maj</option>
+<option value='06'>Juni</option>
+<option value='07'>Juli</option>
+<option value='08'>Augusti	</option>
+<option value='09'>September</option>
+<option value='10'>Oktober</option>
+<option value='11'>November</option>
+<option value='12'>December</option>
+</select>
+
+<select class="form-control" style="width:20%; " name=day1>
+ <option value="" disabled selected hidden>Dag</option>
+        <option value="01">1</option>
+        <option value="02">2</option>
+        <option value="03">3</option>
+        <option value="04">4</option>
+        <option value="05">5</option>
+        <option value="06">6</option>
+        <option value="07">7</option>
+        <option value="08">8</option>
+        <option value="09">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+    </select>
+	
+	<?php 
+if(isset($_POST['year1'],$_POST['month1'],$_POST['day1'])){
+
+$_POST['Fodelsedatum'] = $_POST['year1'] .'-'. $_POST['month1'] .'-'. $_POST['day1']; 
+}
+?>
                     </div>
                 </div>
 
@@ -144,6 +209,13 @@ function generateRandomString($length = 10) {
                    <input type="checkbox"  name="nyhetsbrev" id="nyhetsbrev"> 
                    </div>                  
                     </div>
+					
+					<div class="form-group">
+                   <label for="nyhetsbrev" class="col-sm-3 control-label">Godkänner du <a target="_blank" href="villkor.php">allmänna villkor</a> ?</label>
+                   <div class="col-sm-9">
+                   <input type="checkbox"  name="nyhetsbrev" id="nyhetsbrev"> 
+                   </div>                  
+                    </div>
                
                 <div class="form-group">
                     <div class="col-sm-9 col-sm-offset-3">
@@ -153,6 +225,7 @@ function generateRandomString($length = 10) {
 
                  
 <?php
+
 include("db.php");
   if(isset($_POST['Fornamn'])) {
 if($_SERVER["REQUEST_METHOD"] == "POST")
