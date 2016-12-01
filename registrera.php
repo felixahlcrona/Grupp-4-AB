@@ -174,9 +174,9 @@ $Losenord=md5($Losenord); // Encrypted Password
 $sql="INSERT INTO Kund (Fornamn,Efternamn,Fodelsedatum,Email,Klubbnamn,Gatunamn,Postort,Postnummer,Losenord,active) VALUES('$Fornamn','$Efternamn','$Fodelsedatum','$Email','$Klubbnamn','$Gatunamn','$Postort','$Postnummer','$Losenord', '$active');";
 $result=mysqli_query($db,$sql);
 
-require_once('phpmailer/class.phpmailer.php');
- require_once('phpmailer/class.smtp.php');
-  require_once('phpmailer/class.phpmaileroauthgoogle.php');
+require_once('class.phpmailer.php');
+ require_once('class.smtp.php');
+  require_once('class.phpmaileroauthgoogle.php');
   
   
   $body = '
