@@ -113,14 +113,18 @@ require_once('class.phpmailer.php');
  require_once('class.smtp.php');
   require_once('class.phpmaileroauthgoogle.php');
   
+$Nyalösen = $_POST['Losenord'];
   
   $body = '
 <html>
 <body>
 <p><img src="bilder/morktEmail.jpg" /></p>
 <h1>Hej! Här är ditt nya lösenord du efterfråga<br></h1>
+<br>
 
 
+ <h1><font color="red">' .$Nyalösen.'</font></h1> 
+ 
 
 <b>För att aktivera ditt konto var vänlig och klicka på följande länk:</b><br>
 
@@ -167,6 +171,7 @@ _________________________________________________________________<br><br>
 				  echo "<br>Aktivera ditt nya lösenord i din E-post";
                     echo '</div>';
              echo   '</div>';
+			  
     
      }
      else
