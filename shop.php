@@ -24,15 +24,14 @@ if(isset($_POST['add']))
 			);
 
 			$_SESSION['cart'][$count] = $item_array;
-			echo '<script>window.location="webshop.php"</script>';
+			header('Location: webshop.php');
+			
 
 		}
 
 		else {
 
-			echo '<script>("Products already added to chart")</script>';
-			echo 'script>window.location="webshop.php"</script>';
-
+			header('Location: webshop.php');
 		}
 	}
 
@@ -62,8 +61,7 @@ if(isset($_GET['action']))
 			if($values['product_id'] == $_GET['ProduktID'])
 			{
 				unset($_SESSION['cart'][$keys]);
-				echo '<script>("Produkt har blivit borttagen")</script>';
-				echo '<script>window.location="webshop.php"</script>';
+				header('Location: webshop.php');
 
 			}
 
