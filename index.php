@@ -66,22 +66,22 @@
     <div class="item active">
       <img src="bilder/morkt.jpg" alt="...">
       <div class="carousel-caption">
-        <h3>Kall vintertid</h3>
-        <p>Vår härliga vintertävling i februari</p>
+        <h3 style="font-size:38px;">Exskidloppet</h3>
+        <p style="font-size:25px;">Glöm inte anmäla dig till vår exklusiva skidtävling</p>
       </div>
     </div>
     <div class="item">
       <img src="bilder/grabbarnacykla.jpg" alt="...">
       <div class="carousel-caption">
-        <h3>Cykeltävling</h3>
-        <p>Med hög puls cyklar de tävlande med full fart</p>
+        <h3 style="font-size:38px;">Halvbocken</h3>
+        <p style="font-size:25px;">Anmäl dig till våra oslagbara cykeltävlingar</p>
       </div>
     </div>
    <div class="item">
       <img src="bilder/skoog.jpg" alt="...">
       <div class="carousel-caption">
-        <h3>Sommartävling</h3>
-        <p>Utforska den vackra naturen på våra sommartävlingar</p>
+        <h3 style="font-size:38px;">Bockstensloppet</h3>
+        <p style="font-size:25px;">Utforska den vackra naturen på våra sommartävlingar</p>
       </div>
     </div>
   </div>
@@ -105,7 +105,6 @@
           <img src="bilder/webb.png" alt="" class="img-circle"/>
           <h2>Webbshop</h2>
           <p>Har du glömt något någonting inför din tävling? Glöm inte att köpa det. Du kan köpa det direkt från vår webbshop.</p>
-		   <a href="webshop.php" class="btn btn-primary">Köp här</a>
         </div>
 
         <div class="col-md-4 col-sm-4 col-xs-12">
