@@ -267,14 +267,18 @@ Stämmer dina uppgifter? <br><br>
 <b>Gatunamn:</b>'.$Gatunamn.'<br>
 <b>Postort:</b>'.$Postort.'<br>
 <b>Postnummer:</b>'.$Postnummer.'<br>
+
+<b>För att aktivera ditt konto var vänlig och klicka på följande länk:</b><br>
+
+
+<a href="http://wwwlab.iit.his.se/a15felah/Grupp-4-AB/activate.php?hash=' .$active.'">Aktivera konto</a>
+
+
 _________________________________________________________________<br><br>
 <b>Skidloppet AB</b><br>
 <b>Mail:</b> grupp4ab@gmail.com<br>
 <b>Telefon:</b> 0156-10432<br>
 <b>Stad:</b>Kiruna<br>
-<b>För att aktivera ditt konto var vänlig och klicka på följande länk:</b><br>
-
-http://wwwlab.iit.his.se/a15felah/Grupp-4-AB/activate.php?hash=' .$active.'
 
 </body>
 </html>

@@ -56,7 +56,8 @@ require_once('db.php');
   
   
        .container{
-
+padding:100px;
+padding-right:70px;
  
   }
 .form-control {

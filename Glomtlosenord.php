@@ -57,7 +57,7 @@ function generateRandomString($length = 10) {
     </style>
 
   </head>
-<body background="bilder/registrera.jpg">
+<body background="bilder/bakgrund.jpg">
 
   <?php require_once('includes/header.php'); ?>
 
@@ -128,7 +128,9 @@ $Nyalösen = $_POST['Losenord'];
 
 <b>För att aktivera ditt konto var vänlig och klicka på följande länk:</b><br>
 
-http://wwwlab.iit.his.se/a15felah/Grupp-4-AB/activate.php?hash=' .$active.'
+
+<a href="http://wwwlab.iit.his.se/a15felah/Grupp-4-AB/activate.php?hash=' .$active.'">Aktivera konto</a>
+
 <br>
 
 _________________________________________________________________<br><br>

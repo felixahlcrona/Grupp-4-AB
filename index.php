@@ -105,6 +105,7 @@
           <img src="bilder/webb.png" alt="" class="img-circle"/>
           <h2>Webbshop</h2>
           <p>Har du glömt något någonting inför din tävling? Glöm inte att köpa det. Du kan köpa det direkt från vår webbshop.</p>
+		   <a href="webshop.php" class="btn btn-primary">Köp här</a>
         </div>
 
         <div class="col-md-4 col-sm-4 col-xs-12">
