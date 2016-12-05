@@ -46,7 +46,7 @@ if(isset($_POST['add']))
 		);
 
 		$_SESSION['cart'][0] = $item_array;
-
+header('Location: webshop.php');
 	}
 
 }

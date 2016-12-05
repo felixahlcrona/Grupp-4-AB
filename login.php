@@ -77,7 +77,7 @@ input[type="password"] {
   </head>
 
 </head>
-<body background="bilder/skogen.jpg" style="background-size:cover; background-repeat: no-repeat;">
+<body background="bilder/bakgrund.jpg">
 
 <?php require_once('includes/header.php'); ?>
 

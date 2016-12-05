@@ -57,7 +57,7 @@ function generateRandomString($length = 10) {
     </style>
 
   </head>
-<body background="bilder/registrera.jpg">
+<body background="bilder/bakgrund.jpg">
 
   <?php require_once('includes/header.php'); ?>
 

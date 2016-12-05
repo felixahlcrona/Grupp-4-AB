@@ -1,3 +1,7 @@
+	
+	
+	
+	
 	<?php 
 
   require_once('init.php')
@@ -13,7 +17,8 @@
     <ul class="nav navbar-nav">
       <li><a href="index.php">Hem</a></li>
       <li><a href="bokaevenemang.php">Boka Evenemang</a></li>
-      <li><a href="webshop.php">Webshop</a></li> 
+      <li><a href="webshop.php">Webshop</a></li>
+	  <li><a href="Tävlingsstatistik.php">Tävlingsstatistik</a></li>  
       <li><a href="contact.php">Kontakt</a></li>  
     </ul>
 
