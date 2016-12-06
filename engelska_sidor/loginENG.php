@@ -56,7 +56,7 @@ input[type="password"] {
 <body>
 
 	<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
+  <div class="container-fluid" style="background: #EDF3F5;">
     <div class="navbar-header">
       <a class="navbar-brand" href="engelskHem.php">Skidloppet AB</a>
     </div>

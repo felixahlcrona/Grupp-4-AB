@@ -12,7 +12,7 @@
 <body>
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
+  <div class="container-fluid" style="background: #EDF3F5;">
     <div class="navbar-header">
       <a class="navbar-brand" href="engelskHem.php">Skidloppet AB</a>
     </div>
@@ -41,21 +41,21 @@
                 <div class="form-group">
                     <label for="Fornamn" class="col-sm-3 control-label">Name</label>
                     <div class="col-sm-9">
-                        <input type="text" id="Fornamn" name="Fornamn" placeholder="Förnamn" class="form-control">
+                        <input type="text" id="Fornamn" name="Fornamn" placeholder="First name" class="form-control">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="Efternamn" class="col-sm-3 control-label">Last name</label>
                     <div class="col-sm-9">
-                        <input type="text" id="Efternamn" name="Efternamn" placeholder="Efternamn" class="form-control">
+                        <input type="text" id="Efternamn" name="Efternamn" placeholder="Last name" class="form-control">
                     </div>
                 </div>
         
          <div class="form-group">
                     <label for="Fodelsedatum" class="col-sm-3 control-label">Date of birth</label>
                     <div class="col-sm-9">
-                        <input type="text" id="Fodelsedatum" name="Fodelsedatum" placeholder="eg.19951014-5593" class="form-control">
+                        <input type="text" id="Fodelsedatum" name="Fodelsedatum" placeholder="Date of birth" class="form-control">
                     </div>
                 </div>
 
@@ -69,35 +69,35 @@
                 <div class="form-group">
                     <label for="Klubbnamn" class="col-sm-3 control-label">Club name</label>
                     <div class="col-sm-9">
-                      <input type="text" id="Klubbnamn" name="Klubbnamn" placeholder="Klubbnamn" class="form-control">
+                      <input type="text" id="Klubbnamn" name="Klubbnamn" placeholder="Clubname" class="form-control">
                     </div>
                 </div> 
 
                 <div class="form-group">
                     <label for="Gatunamn" class="col-sm-3 control-label">Street name</label>
                     <div class="col-sm-9">
-                        <input type="text" id="Gatunamn" name="Gatunamn" placeholder="Gatunamn" class="form-control" autofocus>
+                        <input type="text" id="Gatunamn" name="Gatunamn" placeholder="Street name" class="form-control" autofocus>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="Postort" class="col-sm-3 control-label">Postal area</label>
                     <div class="col-sm-9">
-                        <input type="text" id="Postort" name="Postort" placeholder="Postort" class="form-control" autofocus>
+                        <input type="text" id="Postort" name="Postort" placeholder="Postal area" class="form-control" autofocus>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="Postnummer" class="col-sm-3 control-label">Postcode</label>
                     <div class="col-sm-9">
-                        <input type="text" id="Postnummer" name="Postnummer" placeholder="Postnummer" class="form-control" autofocus>
+                        <input type="text" id="Postnummer" name="Postnummer" placeholder="Post code" class="form-control" autofocus>
                     </div>
                 </div>
                
                  <div class="form-group">
                     <label for="Losenord" class="col-sm-3 control-label">Password</label>
                     <div class="col-sm-9">
-                        <input type="Losenord" id="Losenord" name="Losenord" placeholder="Lösenord" class="form-control">
+                        <input type="Losenord" id="Losenord" name="Losenord" placeholder="Password" class="form-control">
                     </div>
                 </div>
 
