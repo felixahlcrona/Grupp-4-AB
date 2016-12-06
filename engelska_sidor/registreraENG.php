@@ -18,9 +18,9 @@
     </div>
     <ul class="nav navbar-nav">
       <li><a href="engelskHem.php">Home</a></li>
-      <li><a href="#">Boka Evenemang</a></li>
+      <li><a href="#">Book Event</a></li>
       <li><a href="webshopENG.php">Webshop</a></li>
-      <li><a href="contactENG.php">Kontakt</a></li>  
+      <li><a href="contactENG.php">Contact</a></li>  
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
