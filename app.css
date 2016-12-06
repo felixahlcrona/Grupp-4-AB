@@ -1,9 +1,10 @@
 /* All extern CSS is placed here */
 * {
 	font-family: 'Raleway', sans-serif;
+	letter-spacing: 0.125rem;
 }
 nav.navbar.navbar-inverse.navbar-fixed-top {
-	background-color: #EDF3F5;
+	background-color: white;
 }
 
 ul.nav.navbar-nav > li > a {
@@ -27,12 +28,13 @@ div.navbar-header {
 }
 
 div.col-sm-9 {
-	width:40%;
+	width:30%;
 }
 
 .reg-text {
 	text-align: center;
 	font-size:25px;
+	margin-top:30px;
 }
 
 .collapsboka
@@ -62,3 +64,12 @@ div.col-sm-9 {
 	margin-right:5%;
 	
 	}
+
+div.logo {
+	height:70px;
+	width:150px;
+	background: url("bilder/Logotype.jpg")center center no-repeat transparent;
+	background-size:cover;
+	margin-top:8px;
+
+}
