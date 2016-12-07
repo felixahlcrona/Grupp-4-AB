@@ -104,7 +104,8 @@
         <div class="col-md-4 col-sm-4 col-xs-12">
           <img src="bilder/webb.png" alt="" class="img-circle"/>
           <h2>Webbshop</h2>
-          <p>Har du glömt något någonting inför din tävling? Glöm inte att köpa det. Du kan köpa det direkt från vår webbshop.</p>
+          <p>Har du glömt något någonting inför din tävling? Glöm inte att köpa det. Du kan köpa det direkt från vår webbshop. Vi har all utrustning och tillbehör som behövs till våra tävlingar</p>
+		  <a href="webshop.php" class="btn btn-primary">Boka här</a>
         </div>
 
         <div class="col-md-4 col-sm-4 col-xs-12">
@@ -129,7 +130,7 @@
     <hr class="divider">
 
 
-    <footer>
+    <footer style="position: fixed;">
       <p class="pull-right"><a href="#">Till toppen</a></p>
       <p>Designad av Grupp 4 AB. <a href="#">Privat</a>. <a href="#">Termer</a></p>
     </footer>
