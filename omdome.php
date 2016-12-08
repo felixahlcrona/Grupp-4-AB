@@ -2,8 +2,9 @@
 <html lang="en">
 <?php
 
-
-require_once('db.php');
+require_once('includes/header.php'); 
+$pdo = new PDO('mysql:dbname=axel;host=wwwlab.iit.his.se', 'sqllab', 'Tomten2009');
+	$pdo->exec("set names utf8");
 
 ?>
 <head>
@@ -45,16 +46,20 @@ h2{
 <div class="container">
 <h1>Lämna ett Omdöme</h1>
 <p>För att kunna utveckla och  ständigt förbättra Skidlopp AB, hoppas vi att du som kund som har varit deltagare i våra evenemang kan ta en stund och
- svara på ett par frågor. De fyra första frågor ska man endast kryssa i mellan 1 till 5 då 1 är Mycket Dåligt och 5 är Mycket Bra och den sista frågan vill vi gärna att du lämnar in en kommentar</p>
+ svara på ett par frågor. De fyra första frågor ska man endast kryssa i mellan 1 till 5 då 1 är Mycket Dåligt och 5 är Jätte Bra och den sista frågan vill vi gärna att du lämnar in en kommentar</p>
  
 <form name="formhorizontal" action="omdome.php" method="post">
  <div class="form-group">
- <label for="KundID">Ange ditt Kund ID:</label>
-<input type="text" class="form-control" name="KundID"/> <br/>
-<label for="KundID">Ange ditt Evenemangs ID:</label>
-<input type="text" class="form-control"name="EvenemangsID"/> <br/>
- <label for="KundID">Ange ditt Namn:</label>
-<input type="text" class="form-control" name="Namn"/> <br/>
+<label for="EvenemangsID">Ange ditt Evenemangs Namn:</label>
+
+<select name="EvenemangsID">
+   <option name="EvenemangsID" value="01">Bockstensloppet</option>
+   <option name="EvenemangsID" value="02">Halvbocken</option>
+   <option name="EvenemangsID" value="03">exSkidlopp</option>
+   <option name="EvenemangsID" value="05">Tjejloppet</option>
+   <option name="EvenemangsID" value="07">exMarathon</option>
+</select>
+</form>
 </div>
 <h2>Helhetsupplevelse</h2>
   <p>Hur upplevde du hela evenemanget?:</p>
@@ -129,7 +134,7 @@ h2{
 	 <label class="radio-inline">
       <input type="radio" name="Mat" value="Mycket Bra"/> 5
     </label>
-<h2>Övriga Kommentarer</h2>
+<h2>övriga Kommentarer</h2>
   
   
     <div class="form-group">
@@ -143,15 +148,13 @@ h2{
 <?php
     $pdo = new PDO('mysql:dbname=Grupp4AB;host=localhost', 'sqllab', 'Tomten2009');
     $pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-	// här är en if sats som gör att det läggs till 
-	
-	if(isset($_POST['KundID'])&& ($_POST['EvenemangsID'])&&($_POST['EvenemangsID']))
+	if(isset($_POST['KundID'])&& ($_POST['EvenemangsID']))
 	{
-        $querystring='INSERT INTO Omdome (KundID, EvenemangsID, Namn, Helhetsupplevelse, Arena,Transport, Mat, Kommentar) VALUES(:KundID,:EvenemangsID,:Namn,:Helhetsupplevelse, :Arena, :Transport, :Mat, :Kommentar);';
+		$_SESSION["KundID"]=$row["KundID"];
+        $querystring='INSERT INTO Omdome (KundID,EvenemangsID,Helhetsupplevelse, Arena,Transport, Mat, Kommentar) VALUES(:KundID,:EvenemangsID, :Helhetsupplevelse, :Arena, :Transport, :Mat, :Kommentar);';
         $stmt = $pdo->prepare($querystring);
-		$stmt->bindParam(':KundID', $_POST['KundID']);
-        $stmt->bindParam(':EvenemangsID', $_POST['EvenemangsID']);
-        $stmt->bindParam(':Namn', $_POST['Namn']);
+		$stmt->bindParam(':KundID', $_SESSION['KundID']);
+		$stmt->bindParam(':EvenemangsID', $_POST['EvenemangsID']);
 		$stmt->bindParam(':Helhetsupplevelse', $_POST['Helhetsupplevelse']);
 		$stmt->bindParam(':Arena', $_POST['Arena']);
 		$stmt->bindParam(':Transport', $_POST['Transport']);
@@ -159,13 +162,15 @@ h2{
 		$stmt->bindParam(':Kommentar', $_POST['Kommentar']);
         $stmt->execute();
 		echo "<h1> Tack För ditt svar";
-	}
+	}	
 	
 	 else
 	 {
 		 echo"<p> Fyll i Tomma rutor</P>";
 	 }
-	// här lägs de nya värden i tabellerna
+	 
+	  
+	
 	   
 ?>
 </body>
